@@ -1,15 +1,9 @@
 from pydub import AudioSegment
 from pydub.generators import Sine,Square
 from pydub.playback import play
-import sys
 
-
-def string2bits(s=''):
-  return ''.join([bin(ord(x))[2:].zfill(8) for x in s])
-
-  print(sys.argv)
-
-mt = '00001101' + string2bits(sys.argv[1])
+with open('output.txt','r') as file:
+  mt = file.read()
 
 SLEEPTIME = 200
 multitone = AudioSegment.empty()
@@ -24,5 +18,5 @@ for m in mt:
     
 
 
-play(multitone)
-  
+multitone.export("res.mp3", format="mp3")
+
